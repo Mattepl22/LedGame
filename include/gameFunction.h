@@ -1,0 +1,28 @@
+#ifndef GAMEFUNCTION_H
+#define GAMEFUNCTION_H
+
+#include <Arduino.h>
+
+//Costruisco le due strutture
+struct ledPin{
+    byte pin1;
+    byte pin2;
+    byte pin3;
+    byte pin4;
+};
+
+struct buttonPin{
+    byte pin1;
+    byte pin2;
+    byte pin3;
+    byte pin4;
+};
+
+//Faccio in modo che possa accedere alle strutture nel main
+extern struct ledPin led;
+extern struct buttonPin button;
+
+void initLed();
+void initButton();
+
+#endif
