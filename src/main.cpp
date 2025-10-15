@@ -1,18 +1,36 @@
 #include "gameFunction.h"
 
-#define RED_PIN 2
-#define YELLOW_PIN 3
-#define GREEN_PIN 4
-#define BLUE_PIN 5
+//Pin Led
+#define RLED_PIN 2
+#define YLED_PIN 3
+#define GLED_PIN 4
+#define BLED_PIN 5
+
+//Pin Button
+#define RBUTTON_PIN 8
+#define YBUTTON_PIN 9
+#define GBUTTON_PIN 10
+#define BBUTTON_PIN 11
 
 void setup() {
   //Assegno i pin led alla struttura
-  led.pin1 = RED_PIN;
-  led.pin2 = YELLOW_PIN;
-  led.pin3 = GREEN_PIN;
-  led.pin4 = BLUE_PIN;
+  led.pin1 = RLED_PIN;
+  led.pin2 = YLED_PIN;
+  led.pin3 = GLED_PIN;
+  led.pin4 = BLED_PIN;
 
+  //Assegno i pin button alla struttura
+  button.pin1 = RBUTTON_PIN;
+  button.pin2 = YBUTTON_PIN;
+  button.pin3 = GBUTTON_PIN;
+  button.pin4 = BBUTTON_PIN;
+
+  //Inizializzazione dei pin
   initLed();
+  initButton();
+
+  //Inizializzo monitor seriale
+  Serial.begin(115200);
 }
 
 void loop() {

@@ -10,6 +10,11 @@ void initLed() {
     pinMode(led.pin2, OUTPUT);
     pinMode(led.pin3, OUTPUT);
     pinMode(led.pin4, OUTPUT);
+
+    digitalWrite(led.pin1, 0);
+    digitalWrite(led.pin2, 0);
+    digitalWrite(led.pin3, 0);
+    digitalWrite(led.pin4, 0);
 }
 
 //Inizializzazione pin Button
