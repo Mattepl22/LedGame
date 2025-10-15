@@ -12,6 +12,12 @@
 #define GBUTTON_PIN 10
 #define BBUTTON_PIN 11
 
+int level;
+bool blink, question;
+
+byte array[10];
+byte oldArray[10];
+
 void setup() {
   //Assegno i pin led alla struttura
   led.pin1 = RLED_PIN;
@@ -29,10 +35,19 @@ void setup() {
   initLed();
   initButton();
 
+  randomSeed(millis());
+
+  level = 1;
+  question = false;
+  blink = false;
+
   //Inizializzo monitor seriale
   Serial.begin(115200);
 }
 
 void loop() {
-  
+  if (!blink && !question) {
+    ledSequence(array, oldArray, level);
+    blink = true;
+  }
 }

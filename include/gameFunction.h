@@ -25,6 +25,6 @@ extern struct buttonPin button;
 void initLed();
 void initButton();
 
-void ledSequence(byte *array, byte *oldArray, int *level);
+void ledSequence(byte *array, byte *oldArray, int level);
 
 #endif
