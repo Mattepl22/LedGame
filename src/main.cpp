@@ -13,7 +13,7 @@
 #define BBUTTON_PIN 11
 
 int level;
-bool blink, question;
+bool blink, answer;
 
 byte array[10];
 byte oldArray[10];
@@ -38,7 +38,7 @@ void setup() {
   randomSeed(millis());
 
   level = 1;
-  question = false;
+  answer = false;
   blink = false;
 
   //Inizializzo monitor seriale
@@ -46,8 +46,13 @@ void setup() {
 }
 
 void loop() {
-  if (!blink && !question) {
+  if (!blink && !answer) {
     ledSequence(array, oldArray, level);
     blink = true;
+    answer = false;
+  } else if (blink && !answer) {
+    blinkSequence(array, level);
+    blink = false;
+    answer = true;
   }
 }
