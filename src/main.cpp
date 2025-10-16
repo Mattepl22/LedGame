@@ -54,5 +54,7 @@ void loop() {
     blinkSequence(array, level);
     blink = false;
     answer = true;
+  } else if (!blink && answer) {
+    
   }
 }

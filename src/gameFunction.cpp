@@ -74,3 +74,23 @@ void blinkSequence(byte *array, int level) {
         }
     }
 }
+
+bool answerButton(byte *answerArray, int level) {
+
+
+    for (int index = 0; index <= level - 1; index++) {
+        while (!digitalRead(button.pin1) || !digitalRead(button.pin2) || !digitalRead(button.pin3) || !digitalRead(button.pin4)) {
+            if (!digitalRead(button.pin1) && answerArray[index] != 1) {
+                return false;
+            } else if (!digitalRead(button.pin2) && answerArray[index] != 2) {
+                return false;
+            } else if (!digitalRead(button.pin3) && answerArray[index] != 3) {
+                return false;
+            } else if (!digitalRead(button.pin4) && answerArray[index] != 4) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
