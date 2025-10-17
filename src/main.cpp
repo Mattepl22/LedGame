@@ -1,16 +1,16 @@
 #include "gameFunction.h"
 
 //Pin Led
-#define RLED_PIN 2
-#define YLED_PIN 3
-#define GLED_PIN 4
-#define BLED_PIN 5
+#define RLED_PIN 8
+#define YLED_PIN 9
+#define GLED_PIN 10
+#define BLED_PIN 11
 
 //Pin Button
-#define RBUTTON_PIN 8
-#define YBUTTON_PIN 9
-#define GBUTTON_PIN 10
-#define BBUTTON_PIN 11
+#define RBUTTON_PIN 4
+#define YBUTTON_PIN 5
+#define GBUTTON_PIN 6
+#define BBUTTON_PIN 7
 
 int level = 0;
 bool blink = false, answer = false, next = false;
@@ -47,7 +47,7 @@ void setup() {
 }
 
 void loop() {
-  if (next){
+  if (next && level <= 10){
     if (!blink && !answer) {
       ledSequence(array, oldArray, level);
       blink = true;
@@ -62,7 +62,11 @@ void loop() {
       blink = false;
       answer = false;
     }
-  } else {
+  } else if (next && level > 10) {
+    level = 1;
+    blink = false;
+    answer = false;
+  } else if (!next) {
     //Accendo e spengo tutti i led per tre volte.
     //Alla terza volta spengo i led per 2 secondi e poi riparto dal livello 1
     errorSequenceBlink();
