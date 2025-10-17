@@ -75,8 +75,8 @@ void blinkSequence(byte *array, int level) {
     }
 }
 
+//Attendo pressione pulsanti e confronto con risposta
 bool answerButton(byte *answerArray, int level) {
-
 
     for (int index = 0; index <= level - 1; index++) {
         while (!digitalRead(button.pin1) || !digitalRead(button.pin2) || !digitalRead(button.pin3) || !digitalRead(button.pin4)) {
@@ -93,4 +93,24 @@ bool answerButton(byte *answerArray, int level) {
     }
 
     return true;
+}
+
+//Blink dei led per segnalare di aver perso
+void errorSequenceBlink() {
+
+    for (int index = 0; index < 3; index++) {
+        digitalWrite(led.pin1, 1);
+        digitalWrite(led.pin2, 1);
+        digitalWrite(led.pin3, 1);
+        digitalWrite(led.pin4, 1);
+
+        delay(1000);
+
+        digitalWrite(led.pin1, 0);
+        digitalWrite(led.pin2, 0);
+        digitalWrite(led.pin3, 0);
+        digitalWrite(led.pin4, 0);
+
+        delay(1000);
+    }
 }
