@@ -26,8 +26,9 @@ void initLed();
 void initButton();
 
 void ledSequence(byte *array, int level);
-void blinkSequence(byte *array, int level);
-bool answerButton(byte *answerArray, int level);
+bool answerButton(const byte *answerArray, int level);
 void errorSequenceBlink();
+
+void WLBlink(int type);
 
 #endif

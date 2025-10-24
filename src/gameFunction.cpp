@@ -25,51 +25,45 @@ void initButton() {
     pinMode(button.pin4, INPUT_PULLUP);
 }
 
-//Sequenza led
+//Sequenza led e blink
 void ledSequence(byte *array, int level) {
-
     array[level - 1] = random(1, 4);
-    
-}
 
-//Blink della sequenza led
-void blinkSequence(byte *array, int level) {
-
-    for (int index = 0; index <= level - 1; index++) {
-        switch (array[index])
-        {
-        case 1:
-            digitalWrite(led.pin1, 1);
-            delay(1000);
-            digitalWrite(led.pin1, 0);
-            break;
-        case 2:
-            digitalWrite(led.pin2, 1);
-            delay(1000);
-            digitalWrite(led.pin2, 0);
-            break;
-        case 3:
-            digitalWrite(led.pin3, 1);
-            delay(1000);
-            digitalWrite(led.pin3, 0);
-            break;
-        case 4:
-            digitalWrite(led.pin4, 1);
-            delay(1000);
-            digitalWrite(led.pin4, 0);
-            break;
-        default:
-            break;
+    for (int index = 0; index < level; index++) {
+        switch (array[index]) {
+           case 1:
+                digitalWrite(led.pin1, 1);
+                delay(1000);
+                digitalWrite(led.pin1, 0);
+                break;
+            case 2:
+                digitalWrite(led.pin2, 1);
+                delay(1000);
+                digitalWrite(led.pin2, 0);
+                break;
+            case 3:
+                digitalWrite(led.pin3, 1);
+                delay(1000);
+                digitalWrite(led.pin3, 0);
+                break;
+            case 4:
+                digitalWrite(led.pin4, 1);
+                delay(1000);
+                digitalWrite(led.pin4, 0);
+                break;
+            default:
+                break; 
         }
 
         if (array[index] < level - 1) {
             delay(1000);
         }
     }
+    
 }
 
 //Attendo pressione pulsanti e confronto con risposta
-bool answerButton(byte *answerArray, int level) {
+bool answerButton(const byte *answerArray, int level) {
 
     for (int index = 0; index <= level - 1; index++) {
         while (!digitalRead(button.pin1) || !digitalRead(button.pin2) || !digitalRead(button.pin3) || !digitalRead(button.pin4)) {

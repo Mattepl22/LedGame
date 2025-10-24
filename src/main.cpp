@@ -13,10 +13,9 @@
 #define BBUTTON_PIN 7
 
 int level = 0;
-bool blink = false, answer = false, next = false;
+bool answer = false, next = false;
 
 byte array[10];
-byte oldArray[10];
 
 void setup() {
   //Assegno i pin led alla struttura
@@ -39,7 +38,6 @@ void setup() {
 
   level = 1;
   answer = false;
-  blink = false;
   next = true;
 
   //Inizializzo monitor seriale
@@ -47,32 +45,25 @@ void setup() {
 }
 
 void loop() {
-  if (next && level <= 10){
-    if (!blink && !answer) {
-      ledSequence(array, oldArray, level);
-      blink = true;
-      answer = false;
-    } else if (blink && !answer) {
-      blinkSequence(array, level);
-      blink = false;
+  
+  if (next && level <= 10) {
+    if (!answer) {
+      ledSequence(array, level);
       answer = true;
-    } else if (!blink && answer) {
+    } else {
       next = answerButton(array, level);
       level += 1;
-      blink = false;
       answer = false;
     }
-  } else if (next && level > 10) {
-    level = 1;
-    blink = false;
-    answer = false;
   } else if (!next) {
-    //Accendo e spengo tutti i led per tre volte.
-    //Alla terza volta spengo i led per 2 secondi e poi riparto dal livello 1
     errorSequenceBlink();
     delay(1000);
     level = 1;
     next = true;
+    answer = false;
+  } else if (level > 10) {
+    level = 1;
+    answer = false;
   }
-  
+    
 }
