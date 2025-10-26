@@ -27,8 +27,10 @@ void initButton();
 
 void ledSequence(byte *array, int level);
 bool answerButton(const byte *answerArray, int level);
-void errorSequenceBlink();
 
-void WLBlink(int type);
+void WLBlink(int type, int duration);
+void ledSequence_ONE(int duration);
+void ledSequence_TWO(int duration);
+void ledSequence_THREE(int duration);
 
 #endif
